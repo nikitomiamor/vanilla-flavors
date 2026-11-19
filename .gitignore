@@ -1,0 +1,6 @@
+build/
+.gradle/
+__pycache__/
+*.pyc
+# decompiled vanilla Minecraft code, kept only locally for reference
+tools/*_26.3.java

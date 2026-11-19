@@ -1,0 +1,28 @@
+package com.nikitomiamor.classicfixes.mixin.client;
+
+import com.nikitomiamor.classicfixes.ClassicFixesConfig;
+import net.minecraft.client.player.FirstPersonHandsAndItems;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(FirstPersonHandsAndItems.class)
+public abstract class FirstPersonHandsAndItemsMixin {
+    /** Sin balanceo: en b1.7.3 la mano iba pegada a la camara (el retraso xBob/yBob llego despues). */
+    @Inject(method = "extractRenderState", at = @At("TAIL"))
+    private void classicFixes$noArmSway(LocalPlayer player, float partialTick, FirstPersonHandsAndItemsRenderState state, CallbackInfo ci) {
+        if (!ClassicFixesConfig.get().noArmSway) return;
+        state.xBob = state.viewXRot;
+        state.yBob = state.viewYRot;
+    }
+
+    /** Golpe antiguo: la mano no baja por la recarga de ataque de 1.9, solo al cambiar de objeto. */
+    @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getItemSwapScale(F)F"))
+    private float classicFixes$noCooldownDip(LocalPlayer player, float partialTick) {
+        return ClassicFixesConfig.get().oldArmSwing ? 1.0F : player.getItemSwapScale(partialTick);
+    }
+}
