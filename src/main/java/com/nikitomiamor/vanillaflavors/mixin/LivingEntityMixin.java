@@ -19,13 +19,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Dano sin origen (caida, fuego, hambre...): la camara se inclina a un lado al azar, como en 1.2.5. */
+/** Damage with no source (fall, fire, hunger...): the camera tilts to a random side, as in 1.2.5. */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
     /**
-     * Caminar hacia atras gira el cuerpo de lado, como antes de 1.12 (17w13a).
-     * Desde 17w13a, tick() voltea 180 el objetivo del cuerpo cuando el movimiento esta entre 95 y 265 grados
-     * de la mirada; subir ese 95 hace que la condicion nunca se cumpla y el cuerpo apunte hacia donde se mueve.
+     * Walking backwards turns the body sideways, as before 1.12 (17w13a).
+     * Since 17w13a, tick() flips the body target 180 degrees when movement is between 95 and 265 degrees
+     * from the look direction; raising that 95 makes the condition never true and the body points where it moves.
      */
     @ModifyConstant(method = "tick", constant = @Constant(floatValue = 95.0F))
     private float vanillaFlavors$sidewaysBackwardWalk(float original) {
@@ -33,9 +33,9 @@ public abstract class LivingEntityMixin {
     }
 
     /**
-     * Ultimo paso de EntityLivingBase.updateDistance (1.2.5 a 1.11): tras limitar la cabeza a 75 grados del torso,
-     * si la diferencia pasa de 50 el torso se acerca un 20% mas a la mirada. Al caminar hacia atras queda a ~60 grados.
-     * El tickHeadTurn de ahora solo limita, sin este empujon.
+     * Last step of EntityLivingBase.updateDistance (1.2.5 to 1.11): after clamping the head to 75 degrees from the torso,
+     * if the difference is over 50 the torso moves 20% closer to the look direction. Walking backwards it ends up at ~60 degrees.
+     * The current tickHeadTurn only clamps, without this push.
      */
     @Inject(method = "tickHeadTurn", at = @At("TAIL"))
     private void vanillaFlavors$oldBodyNudge(float yBodyRotT, CallbackInfo ci) {
@@ -47,10 +47,10 @@ public abstract class LivingEntityMixin {
     @Shadow @Final private LivingEntity.SwingState swingState;
 
     /**
-     * Golpe de b1.7.3 (EntityPlayer.swingItem): cada clic reinicia la animacion, no solo pasada la mitad.
-     * Solo en clics (ClickSwing): al minar el juego llama a swing() cada tick, y reiniciar ahi dejaba el brazo
-     * quieto. Minando, el reinicio normal (pasada la mitad de 8 ticks = cada 5) ya coincide con b1.7.3,
-     * que repetia el clic cada 5 ticks con el boton pulsado.
+     * b1.7.3 swing (EntityPlayer.swingItem): every click restarts the animation, not only past the halfway point.
+     * Only on clicks (ClickSwing): while mining the game calls swing() every tick, and restarting there froze
+     * the arm. While mining, the normal restart (past half of 8 ticks = every 5) already matches b1.7.3,
+     * which repeated the click every 5 ticks while the button was held.
      */
     @Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z", at = @At("HEAD"))
     private void vanillaFlavors$alwaysRestartSwing(InteractionHand hand, SwingAnimation animation, boolean sendToSelf,
@@ -61,7 +61,7 @@ public abstract class LivingEntityMixin {
         }
     }
 
-    /** El golpe duraba 8 ticks en b1.7.3 y 1.2.5; ahora 6. Solo cambia la duracion por defecto (no lanzas y similares). */
+    /** The swing lasted 8 ticks in b1.7.3 and 1.2.5; now 6. Only changes the default duration (not spears and the like). */
     @Redirect(method = "getModifiedSwingDuration",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/component/SwingAnimation;duration()I"))
     private int vanillaFlavors$slowerSwing(SwingAnimation animation) {

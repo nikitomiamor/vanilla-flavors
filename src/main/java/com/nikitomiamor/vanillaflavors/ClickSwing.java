@@ -1,9 +1,9 @@
 package com.nikitomiamor.vanillaflavors;
 
 /**
- * true solo mientras Minecraft.startAttack (un clic izquierdo) esta en marcha en el hilo del cliente.
- * Asi el golpe de b1.7.3 reinicia la animacion en cada clic, pero no en los swing() que el juego
- * llama cada tick al mantener el boton minando (eso dejaba el brazo quieto).
+ * true only while Minecraft.startAttack (a left click) is running on the client thread.
+ * This way the b1.7.3 swing restarts the animation on every click, but not on the swing() calls the game
+ * makes every tick while the button is held to mine (that froze the arm).
  */
 public final class ClickSwing {
     public static boolean active;

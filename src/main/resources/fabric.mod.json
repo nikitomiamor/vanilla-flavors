@@ -3,7 +3,7 @@
   "id": "vanilla_flavors",
   "version": "${version}",
   "name": "Vanilla Flavors",
-  "description": "Sabores clasicos de Minecraft para 26.3: lo que rompio la 1.3.1 (12w18a) y Mojang nunca arreglo (ghast que se hincha, vagonetas que empujan, teleports instantaneos, manzana de Notch, marcador del mapa...), la niebla de la beta y la iluminacion de BTA. Cada uno se puede activar o desactivar desde Mod Menu.",
+  "description": "Classic flavors of vanilla for 26.3: things broken in 1.3.1 (12w18a) that Mojang never fixed (swelling ghasts, minecarts that push, instant teleports, Notch's apple, smooth map marker...), Beta fog and BTA-style lighting. Each one can be toggled from Mod Menu.",
   "authors": [
     "Nikitomiamor"
   ],

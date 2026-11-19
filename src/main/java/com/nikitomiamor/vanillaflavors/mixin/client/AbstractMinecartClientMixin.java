@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AbstractMinecart.class)
 public abstract class AbstractMinecartClientMixin {
     /**
-     * El servidor empuja al jugador, pero el movimiento del jugador lo decide el cliente y
-     * ese empuje se pierde. Aplicamos aqui los mismos dos empujes que hacia 1.2.5.
+     * The server pushes the player, but player movement is decided by the client and
+     * that push gets lost. We apply here the same two pushes 1.2.5 did.
      */
     @Inject(method = "tick", at = @At("TAIL"))
     private void vanillaFlavors$pushLocalPlayer(CallbackInfo ci) {
@@ -27,13 +27,13 @@ public abstract class AbstractMinecartClientMixin {
         if (player == null || player.level() != self.level() || player.isPassenger() || player.isSpectator()
             || self.hasPassenger(player) || player.noPhysics || self.noPhysics) return;
 
-        // Vagoneta en marcha que choca con el jugador (EntityMinecart.onUpdate -> applyEntityCollision).
+        // Moving minecart hitting the player (EntityMinecart.onUpdate -> applyEntityCollision).
         if (self.isRideable() && self.getDeltaMovement().horizontalDistanceSqr() >= 0.01
             && self.getBoundingBox().inflate(0.2, 0.0, 0.2).intersects(player.getBoundingBox())) {
             player.push(self);
         }
 
-        // Jugador pegado a la vagoneta (EntityMinecart.applyEntityCollision): la parte del jugador.
+        // Player touching the minecart (EntityMinecart.applyEntityCollision): the player's part.
         if (self.getBoundingBox().intersects(player.getBoundingBox())) {
             double xa = player.getX() - self.getX();
             double za = player.getZ() - self.getZ();
@@ -48,7 +48,7 @@ public abstract class AbstractMinecartClientMixin {
         }
     }
 
-    /** Con el servidor mandando cada tick, 2 pasos de interpolacion bastan y la vagoneta gira al momento. */
+    /** With the server sending every tick, 2 interpolation steps are enough and the minecart turns immediately. */
     @Inject(method = "createInterpolationHandler", at = @At("RETURN"))
     private void vanillaFlavors$shortInterpolation(CallbackInfoReturnable<InterpolationHandler> cir) {
         if (VanillaFlavorsConfig.get().minecartSync && cir.getReturnValue() instanceof LinearInterpolationHandler linear && Minecraft.getInstance().hasSingleplayerServer()) {

@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Particulas de construccion de 1.2.5 (BlockPumpkin.onBlockAdded): 120 copos o bolas de nieve. */
+/** 1.2.5 build particles (BlockPumpkin.onBlockAdded): 120 snowflakes or snowballs. */
 @Mixin(CarvedPumpkinBlock.class)
 public abstract class CarvedPumpkinBlockMixin {
     @Inject(method = "spawnGolemInWorld", at = @At("TAIL"))

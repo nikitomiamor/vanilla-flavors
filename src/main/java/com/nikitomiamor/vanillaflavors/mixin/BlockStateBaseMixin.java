@@ -10,11 +10,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Luz suave de b1.7.3 (RenderBlocks.renderStandardBlockWithAmbientOcclusion): cada esquina era la media del brillo
- * de sus 4 vecinos, y un bloque opaco aportaba su propio brillo, el de luz 0 (0.05). Ahora la media es de niveles
- * de luz (los opacos no cuentan) por una sombra de 0.2 para todo bloque con colision entera (cristal y hojas incluidos).
- * Dando 0.05 a los bloques que tapan la luz y 1.0 al resto sale la misma sombra que en b1.7.3.
- * Sodium lee este mismo metodo (LightDataAccess), asi que vale con y sin Sodium.
+ * b1.7.3 smooth lighting (RenderBlocks.renderStandardBlockWithAmbientOcclusion): each corner was the average brightness
+ * of its 4 neighbours, and an opaque block contributed its own brightness, that of light 0 (0.05). Now the average is of light
+ * levels (opaque blocks do not count) times a 0.2 shade for every block with a full collision box (glass and leaves included).
+ * Giving 0.05 to blocks that block light and 1.0 to the rest produces the same shading as b1.7.3.
+ * Sodium reads this same method (LightDataAccess), so it works with and without Sodium.
  */
 @Mixin(BlockBehaviour.BlockStateBase.class)
 public abstract class BlockStateBaseMixin {

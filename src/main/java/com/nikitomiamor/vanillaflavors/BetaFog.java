@@ -1,8 +1,8 @@
 package com.nikitomiamor.vanillaflavors;
 
-/** Estado compartido entre los mixins de la niebla (solo hilo de render). */
+/** State shared between the fog mixins (render thread only). */
 public final class BetaFog {
-    /** true si en el fotograma actual se aplico la niebla del aire. */
+    /** true if the air fog was applied in the current frame. */
     public static boolean atmospheric;
 
     private BetaFog() {}

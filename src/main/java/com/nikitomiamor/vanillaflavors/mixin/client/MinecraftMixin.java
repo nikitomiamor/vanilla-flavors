@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
-    /** Marca los clics de ataque para el golpe de b1.7.3 (ver ClickSwing). */
+    /** Marks attack clicks for the b1.7.3 swing (see ClickSwing). */
     @Inject(method = "startAttack", at = @At("HEAD"))
     private void vanillaFlavors$clickStart(CallbackInfoReturnable<Boolean> cir) {
         ClickSwing.active = true;
@@ -25,7 +25,7 @@ public abstract class MinecraftMixin {
         ClickSwing.active = false;
     }
 
-    /** Teclas del mod: alternar el estilo del lightmap (como en BTA) y abrir el menu de configuracion. */
+    /** The mod's keys: toggle the lightmap style (as in BTA) and open the config menu. */
     @Inject(method = "handleKeybinds", at = @At("HEAD"))
     private void vanillaFlavors$modKeys(CallbackInfo ci) {
         Minecraft minecraft = (Minecraft) (Object) this;

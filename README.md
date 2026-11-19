@@ -1,12 +1,40 @@
 # Vanilla Flavors
 
-Mod de Fabric para Minecraft 26.3 que restaura cosas que rompió la 1.3.1 (12w18a) y otros detalles clásicos: el ghast que se hincha antes de disparar, vagonetas que empujan, teleports instantáneos, la niebla de la beta, iluminación BTA y más. Cada arreglo se activa o desactiva desde Mod Menu (opcional, con Cloth Config).
+A Fabric mod for Minecraft 26.3 that brings back classic flavors of vanilla: things broken in 1.3.1 (12w18a) that Mojang never fixed, plus old looks and animations from Beta and 1.x. Every feature can be turned on or off from Mod Menu (optional, needs Cloth Config).
 
-## Descarga
-El `.jar` está en [Releases](../../releases). Requiere Fabric Loader 0.20+.
+## Features
 
-## Compilar
+**Graphics**
+- Beta distance fog (b1.7.3)
+- Lightmap style: Beta grayscale or modern colorized, switchable live with F7 (as in Better Than Adventure)
+- Beta smooth lighting
+- Void particles near the bottom of the world (1.7)
+- Dimension loading titles ("Entering the Nether", "Respawning"...)
+- Golem build particles
+
+**Animations**
+- Beta arm swing, no arm sway
+- Sideways backward walking and classic head turn (pre-1.12)
+- Fall tilt (1.12.2 camera pitch)
+- Random damage tilt
+- Twisted arm (bug MC-1349)
+
+**Entities**
+- Ghasts swell before firing
+- Minecarts push the player
+- Lag-free minecarts
+
+**Gameplay**
+- Instant teleport (no sliding endermen)
+- Creative mode blocks in the hotbar (1.2.5)
+- Notch's apple
+- Smooth map marker
+
+## Download
+Get the `.jar` from [Releases](../../releases). Requires Fabric Loader 0.20+.
+
+## Building
 ```bash
 ./build.sh
 ```
-Compila con `javac` contra el jar de 26.3 y las librerías que instala Modrinth (ver variables al principio de `build.sh`). El jar sale en `build/libs/`.
+Compiles with `javac` against the 26.3 game jar and the libraries installed by the Modrinth App (see the variables at the top of `build.sh`). The jar ends up in `build/libs/`.

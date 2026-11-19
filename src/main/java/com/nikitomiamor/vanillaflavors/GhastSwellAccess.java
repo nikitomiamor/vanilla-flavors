@@ -1,6 +1,6 @@
 package com.nikitomiamor.vanillaflavors;
 
-/** Estado del lado cliente que se guarda en cada ghast. */
+/** Client-side state stored on each ghast. */
 public interface GhastSwellAccess {
     int vanillaFlavors$lastTick();
     float vanillaFlavors$prev();

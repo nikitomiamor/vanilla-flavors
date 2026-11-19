@@ -13,10 +13,10 @@ import java.nio.file.Path;
 import net.fabricmc.loader.api.FabricLoader;
 
 /**
- * Interruptores de cada arreglo, guardados en config/vanilla_flavors.json.
- * Todos activados por defecto. La pantalla de Mod Menu recorre estos campos por reflexion,
- * asi que cada boolean nuevo necesita sus claves vanilla_flavors.config.<campo> en los idiomas
- * y un @Group (pestana del menu: graphics, animations, entities o gameplay; sin el va a "other").
+ * Toggles for each feature, saved in config/vanilla_flavors.json.
+ * All enabled by default. The Mod Menu screen walks these fields by reflection,
+ * so every new boolean needs its vanilla_flavors.config.<field> keys in the languages
+ * and a @Group (menu tab: graphics, animations, entities or gameplay; without one it goes to "other").
  */
 public final class VanillaFlavorsConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -64,7 +64,7 @@ public final class VanillaFlavorsConfig {
     @Group("graphics")
     public boolean betaFog = true;
 
-    /** Pestana del menu de configuracion (vanilla_flavors.config.group.<nombre>). */
+    /** Config menu tab (vanilla_flavors.config.group.<name>). */
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.FIELD)
     public @interface Group {
@@ -81,12 +81,12 @@ public final class VanillaFlavorsConfig {
             try (Reader reader = Files.newBufferedReader(FILE)) {
                 config = GSON.fromJson(reader, VanillaFlavorsConfig.class);
             } catch (Exception e) {
-                System.err.println("[Vanilla Flavors] No se pudo leer " + FILE + ": " + e);
+                System.err.println("[Vanilla Flavors] Could not read " + FILE + ": " + e);
             }
         }
         if (config == null) config = new VanillaFlavorsConfig();
         instance = config;
-        save(); // escribe los campos nuevos que falten en el archivo
+        save(); // writes any missing new fields to the file
         return config;
     }
 
@@ -97,7 +97,7 @@ public final class VanillaFlavorsConfig {
                 GSON.toJson(instance, writer);
             }
         } catch (Exception e) {
-            System.err.println("[Vanilla Flavors] No se pudo guardar " + FILE + ": " + e);
+            System.err.println("[Vanilla Flavors] Could not save " + FILE + ": " + e);
         }
     }
 }

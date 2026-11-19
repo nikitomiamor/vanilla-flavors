@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Anade la tecla del lightmap a Controles (sin Fabric API), antes de leer options.txt para que se guarde. */
+/** Adds the lightmap key to Controls (without Fabric API), before options.txt is read so it gets saved. */
 @Mixin(Options.class)
 public abstract class OptionsMixin {
     @Shadow @Final @Mutable public KeyMapping[] keyMappings;

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Marca que este fotograma usa la niebla normal del aire (no agua, lava, ceguera...). */
+/** Marks that this frame uses the normal air fog (not water, lava, blindness...). */
 @Mixin(AtmosphericFogEnvironment.class)
 public abstract class AtmosphericFogEnvironmentMixin {
     @Inject(method = "setupFog", at = @At("TAIL"))

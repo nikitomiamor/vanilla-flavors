@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FirstPersonHandsAndItems.class)
 public abstract class FirstPersonHandsAndItemsMixin {
-    /** Sin balanceo: en b1.7.3 la mano iba pegada a la camara (el retraso xBob/yBob llego despues). */
+    /** No sway: in b1.7.3 the hand was locked to the camera (the xBob/yBob lag came later). */
     @Inject(method = "extractRenderState", at = @At("TAIL"))
     private void vanillaFlavors$noArmSway(LocalPlayer player, float partialTick, FirstPersonHandsAndItemsRenderState state, CallbackInfo ci) {
         if (!VanillaFlavorsConfig.get().noArmSway) return;
@@ -20,7 +20,7 @@ public abstract class FirstPersonHandsAndItemsMixin {
         state.yBob = state.viewYRot;
     }
 
-    /** Golpe antiguo: la mano no baja por la recarga de ataque de 1.9, solo al cambiar de objeto. */
+    /** Old swing: the hand does not drop from the 1.9 attack cooldown, only when switching items. */
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getItemSwapScale(F)F"))
     private float vanillaFlavors$noCooldownDip(LocalPlayer player, float partialTick) {
         return VanillaFlavorsConfig.get().oldArmSwing ? 1.0F : player.getItemSwapScale(partialTick);

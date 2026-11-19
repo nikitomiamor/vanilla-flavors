@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * "Brazo torcido" en primera persona (MC-1349 / MC-26638). Si el modelo del jugador se dibujo montado por ultima vez
- * (en F5, en el inventario o al ver a otro jugador montado), la mano vacia en primera persona sale con los -36 grados
- * de la pose de montar. Se arregla solo al volver a dibujar el modelo sin montar (F5 o inventario fuera del vehiculo).
+ * First-person "bent arm" (MC-1349 / MC-26638). If the player model was last drawn riding
+ * (in F5, in the inventory or when seeing another player riding), the empty first-person hand gets the -36 degrees
+ * of the riding pose. It fixes itself once the model is drawn again not riding (F5 or inventory outside the vehicle).
  */
 @Mixin(AvatarRenderer.class)
 public abstract class AvatarRendererMixin {

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Pone "Entering the Nether", "Leaving the End", "Respawning"... encima de "Descargando terreno". */
+/** Puts "Entering the Nether", "Leaving the End", "Respawning"... above "Downloading terrain". */
 @Mixin(LevelLoadingScreen.class)
 public abstract class LevelLoadingScreenMixin extends Screen {
     @Shadow private LevelLoadTracker loadTracker;

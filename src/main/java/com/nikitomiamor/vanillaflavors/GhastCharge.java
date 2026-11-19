@@ -7,9 +7,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.monster.Ghast;
 
 /**
- * Antes de 12w18a el cliente leia el contador de disparo del ghast y lo hinchaba.
- * El servidor nunca lo envia, asi que en un jugador el servidor integrado lo deja aqui
- * (por UUID, que es igual en cliente y servidor) y el renderer lo lee.
+ * Before 12w18a the client read the ghast's attack counter and swelled it.
+ * The server never sends it, so in singleplayer the integrated server stores it here
+ * (by UUID, which is the same on client and server) and the renderer reads it.
  */
 public final class GhastCharge {
     public static final Map<UUID, Integer> SERVER = new ConcurrentHashMap<>();
@@ -26,7 +26,7 @@ public final class GhastCharge {
         SERVER.remove(ghast.getUUID());
     }
 
-    /** Escala de 1.2.5 (RenderGhast.preRenderCallback), relativa al 4.5 que ya trae el modelo. */
+    /** 1.2.5 scale (RenderGhast.preRenderCallback), relative to the 4.5 the model already has. */
     public static float[] scale(float counter) {
         float t = counter / 20.0F;
         if (t < 0.0F) t = 0.0F;

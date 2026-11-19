@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientPacketListener.class)
 public abstract class ClientPacketListenerMixin {
-    /** Un teleport de otra entidad se aplica de golpe en vez de deslizarla hasta el destino. */
+    /** A teleport of another entity is applied at once instead of sliding it to the destination. */
     @ModifyArg(
         method = "handleTeleportEntity",
         at = @At(

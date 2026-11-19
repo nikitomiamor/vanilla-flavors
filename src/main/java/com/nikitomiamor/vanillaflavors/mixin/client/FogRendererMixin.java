@@ -14,11 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Niebla de distancia de b1.7.3 (EntityRenderer.setupFog, rama lineal):
- * empieza a 1/4 de la distancia de renderizado y se cierra en el borde; en el Nether empieza en 0.
- * La moderna solo difumina los ultimos bloques (borde - clamp(borde/10, 4, 64)).
- * Solo toca la niebla del aire: agua, lava, nieve polvo, ceguera y oscuridad quedan como estan.
- * Sodium lee estos mismos valores, asi que funciona con el.
+ * b1.7.3 distance fog (EntityRenderer.setupFog, linear branch):
+ * starts at 1/4 of the render distance and closes at the edge; in the Nether it starts at 0.
+ * The modern one only blurs the last few blocks (edge - clamp(edge/10, 4, 64)).
+ * Only touches the air fog: water, lava, powder snow, blindness and darkness stay as they are.
+ * Sodium reads these same values, so it works with it.
  */
 @Mixin(FogRenderer.class)
 public abstract class FogRendererMixin {

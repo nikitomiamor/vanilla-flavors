@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Al caer, la vista y la mano en primera persona se inclinan segun la velocidad (al saltar, al reves),
- * como en EntityRenderer.setupViewBobbing de 1.12.2. bobView se usa para la camara y para la mano.
+ * When falling, the view and the first-person hand tilt with the speed (the other way when jumping),
+ * as in 1.12.2 EntityRenderer.setupViewBobbing. bobView is used for both the camera and the hand.
  */
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {

@@ -6,17 +6,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
 /**
- * Estilo del lightmap como en Better Than Adventure: Grises (Beta, el lightmap.fsh del pack)
- * o Color (el lightmap.fsh moderno del juego). Los dos shaders estan compilados a la vez,
- * asi que se cambia al instante, sin recargar recursos (config betaLighting o la tecla F7).
+ * Lightmap style as in Better Than Adventure: Grayscale (Beta, the pack's lightmap.fsh)
+ * or Colorized (the game's modern lightmap.fsh). Both shaders are compiled at the same time,
+ * so it switches instantly, without a resource reload (betaLighting config or the F7 key).
  */
 public final class LightmapStyle {
-    /** Shader del pipeline de color: un archivo vacio del mod que ShaderManagerMixin cambia por el del juego. */
+    /** Shader of the colorized pipeline: an empty file in the mod that ShaderManagerMixin swaps for the game's. */
     public static final Identifier COLORIZED_SHADER = Identifier.fromNamespaceAndPath("vanilla_flavors", "core/lightmap_colorized");
     public static final Identifier COLORIZED_SHADER_FILE = Identifier.fromNamespaceAndPath("vanilla_flavors", "shaders/core/lightmap_colorized.fsh");
     public static final Identifier VANILLA_SHADER_FILE = Identifier.withDefaultNamespace("shaders/core/lightmap.fsh");
 
-    /** Lo crea RenderPipelinesMixin junto a los pipelines del juego. */
+    /** Created by RenderPipelinesMixin next to the game's pipelines. */
     public static RenderPipeline colorizedPipeline;
 
     private LightmapStyle() {}

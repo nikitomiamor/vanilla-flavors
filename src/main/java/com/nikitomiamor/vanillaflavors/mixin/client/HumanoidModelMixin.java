@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Bug MC-1349 (1.4.2 a 1.8.8): el modelo recuerda si la ultima entidad que dibujo iba montada.
- * En esas versiones ModelBiped.isRiding nunca se limpiaba, asi que la mano en primera persona heredaba
- * la pose de "brazos hacia adelante" de cuando el modelo se dibujo montado (F5, inventario u otro jugador).
+ * Bug MC-1349 (1.4.2 to 1.8.8): the model remembers whether the last entity it drew was riding.
+ * In those versions ModelBiped.isRiding was never cleared, so the first-person hand inherited
+ * the "arms forward" pose from when the model was drawn riding (F5, inventory or another player).
  */
 @Mixin(HumanoidModel.class)
 public abstract class HumanoidModelMixin implements RidingArmState {

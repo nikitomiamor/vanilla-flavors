@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** En un jugador, manda la posicion de la vagoneta cada tick (no cada 3) para que el cliente no la retrase. */
+/** In singleplayer, sends the minecart position every tick (not every 3) so the client does not lag behind. */
 @Mixin(AbstractMinecart.class)
 public abstract class AbstractMinecartMixin {
     @Inject(method = "tick", at = @At("TAIL"))

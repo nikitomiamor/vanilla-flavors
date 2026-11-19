@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin {
-    /** Empuje sin direccion (xd = zd = 0): lado al azar en vez de un angulo sin sentido. */
+    /** Knockback with no direction (xd = zd = 0): random side instead of a meaningless angle. */
     @Inject(method = "indicateDamage", at = @At("HEAD"), cancellable = true)
     private void vanillaFlavors$randomTilt(double xd, double zd, CallbackInfo ci) {
         if (xd == 0.0 && zd == 0.0 && VanillaFlavorsConfig.get().randomDamageTilt) {

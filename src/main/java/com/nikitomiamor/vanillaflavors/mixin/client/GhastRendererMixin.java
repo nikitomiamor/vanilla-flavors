@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** El ghast se hincha antes de escupir la bola de fuego, como hasta 12w17a. */
+/** The ghast swells before spitting the fireball, as until 12w17a. */
 @Mixin(GhastRenderer.class)
 public abstract class GhastRendererMixin {
     @Inject(
@@ -37,8 +37,8 @@ public abstract class GhastRendererMixin {
     }
 
     /**
-     * En un jugador lee el contador real del servidor integrado. En multijugador solo llega
-     * "cargando si/no" (que se activa en el tick 11 y dispara en el 20), asi que lo imitamos.
+     * In singleplayer it reads the real counter from the integrated server. In multiplayer only
+     * "charging yes/no" arrives (it turns on at tick 11 and fires at 20), so we imitate it.
      */
     @Unique
     private static int vanillaFlavors$sample(Ghast ghast, float current) {

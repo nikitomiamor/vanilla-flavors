@@ -16,9 +16,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 /**
- * El lightmap de color (vanilla_flavors:core/lightmap_colorized) es un archivo de relleno en el mod;
- * al cargarlo se usa el lightmap.fsh original del juego, aunque el pack tenga el suyo de grises.
- * Asi siempre coincide con la version del juego sin copiar su codigo.
+ * The colorized lightmap (vanilla_flavors:core/lightmap_colorized) is a placeholder file in the mod;
+ * when it is loaded the game's original lightmap.fsh is used, even if the pack has its own grayscale one.
+ * That way it always matches the game version without copying its code.
  */
 @Mixin(ShaderManager.class)
 public abstract class ShaderManagerMixin {

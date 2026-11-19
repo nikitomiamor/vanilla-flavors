@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-/** El marcador del mapa se mandaba cada 5 ticks (4 veces por segundo); ahora cada tick. */
+/** The map marker was sent every 5 ticks (4 times per second); now every tick. */
 @Mixin(targets = "net.minecraft.world.level.saveddata.maps.MapItemSavedData$HoldingPlayer")
 public abstract class MapHoldingPlayerMixin {
     @ModifyConstant(method = "nextUpdatePacket", constant = @Constant(intValue = 5))

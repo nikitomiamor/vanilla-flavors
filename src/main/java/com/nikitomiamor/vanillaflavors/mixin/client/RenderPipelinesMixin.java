@@ -15,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Registra una copia del pipeline LIGHTMAP con el shader moderno (vanilla_flavors:core/lightmap_colorized).
- * Registrado aqui, el juego lo compila en cada recarga junto a los suyos.
+ * Registers a copy of the LIGHTMAP pipeline with the modern shader (vanilla_flavors:core/lightmap_colorized).
+ * Registered here, the game compiles it on every reload along with its own.
  */
 @Mixin(RenderPipelines.class)
 public abstract class RenderPipelinesMixin {

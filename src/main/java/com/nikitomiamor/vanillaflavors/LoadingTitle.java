@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
-/** Texto de la pantalla de carga de antes de 12w18a ("Entering the Nether", "Respawning"...). */
+/** Pre-12w18a loading screen text ("Entering the Nether", "Respawning"...). */
 public final class LoadingTitle {
     private static @Nullable Component current;
 

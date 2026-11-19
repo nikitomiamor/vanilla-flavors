@@ -17,9 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Player.class)
 public abstract class PlayerMixin implements FallTiltAccess {
     /**
-     * Inclinacion de la vista y la mano al caer o saltar (EntityPlayer.cameraPitch de 1.12.2).
-     * Objetivo atan(-velY * 0.2) * 15 grados, 0 en el suelo o muerto; se acerca un 80% cada tick.
-     * GameRendererMixin la aplica en bobView, asi que solo se nota con el balanceo al caminar activado.
+     * View and hand tilt when falling or jumping (1.12.2 EntityPlayer.cameraPitch).
+     * Target atan(-velY * 0.2) * 15 degrees, 0 on the ground or when dead; moves 80% closer each tick.
+     * GameRendererMixin applies it in bobView, so it only shows with view bobbing enabled.
      */
     @Unique private float vanillaFlavors$tilt;
     @Unique private float vanillaFlavors$tiltO;
@@ -43,16 +43,16 @@ public abstract class PlayerMixin implements FallTiltAccess {
     }
 
     /**
-     * La cabeza puede girar hasta 75 grados respecto al torso, como antes de 1.12 (updateDistance de 1.11).
-     * El vanilla actual usa 50; se respeta el limite de 15 al bloquear con escudo.
-     * Junto con LivingEntityMixin, al caminar hacia atras el torso queda girado 75 grados de lado.
+     * The head can turn up to 75 degrees from the torso, as before 1.12 (1.11 updateDistance).
+     * Current vanilla uses 50; the 15 limit while blocking with a shield is kept.
+     * Together with LivingEntityMixin, walking backwards leaves the torso turned 75 degrees sideways.
      */
     @Inject(method = "getMaxHeadRotationRelativeToBody", at = @At("HEAD"), cancellable = true)
     private void vanillaFlavors$classicHeadTurn(CallbackInfoReturnable<Float> cir) {
         if (VanillaFlavorsConfig.get().classicHeadTurn && !((Player) (Object) this).isBlocking()) cir.setReturnValue(75.0F);
     }
 
-    /** Si muere un jugador llamado Notch, suelta una manzana (EntityPlayer.onDeath de 1.2.5). */
+    /** If a player named Notch dies, they drop an apple (1.2.5 EntityPlayer.onDeath). */
     @Inject(method = "dropEquipment", at = @At("HEAD"))
     private void vanillaFlavors$notchApple(ServerLevel level, CallbackInfo ci) {
         Player self = (Player) (Object) this;

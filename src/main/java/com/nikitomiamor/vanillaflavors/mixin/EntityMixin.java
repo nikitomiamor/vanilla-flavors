@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Los endermen (y todo lo que usa teleportTo) se mueven con un paquete normal y el cliente
- * los desliza hasta el destino. Mandamos un paquete de teleport, que el cliente aplica de golpe.
+ * Endermen (and everything that uses teleportTo) move with a normal packet and the client
+ * slides them to the destination. We send a teleport packet instead, which the client applies at once.
  */
 @Mixin(Entity.class)
 public abstract class EntityMixin {

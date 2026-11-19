@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-/** Los bloques que 1.2.5 ponia en la barra al entrar en un mundo creativo de un jugador. */
+/** The blocks 1.2.5 put in the hotbar when entering a singleplayer creative world. */
 public final class CreativeKit {
     private static final Block[] HOTBAR = {
         Blocks.STONE, Blocks.COBBLESTONE, Blocks.BRICKS, Blocks.DIRT, Blocks.OAK_PLANKS,

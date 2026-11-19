@@ -11,8 +11,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 /**
- * Un interruptor por cada campo boolean de VanillaFlavorsConfig, repartidos en pestanas segun su @Group.
- * Las pestanas salen en el orden de GROUPS; dentro de cada una, en el orden en que estan declarados los campos.
+ * One toggle per boolean field of VanillaFlavorsConfig, split into tabs by their @Group.
+ * Tabs follow the order of GROUPS; inside each one, fields keep their declaration order.
  */
 public final class ConfigScreen {
     private static final String[] GROUPS = {"graphics", "animations", "entities", "gameplay", "other"};
@@ -28,13 +28,13 @@ public final class ConfigScreen {
             .setTitle(Component.translatable("vanilla_flavors.config.title"))
             .setSavingRunnable(() -> {
                 VanillaFlavorsConfig.save();
-                // la luz suave (mallas de chunks) solo cambia al recargar; el estilo del lightmap cambia al instante
+                // smooth lighting (chunk meshes) only changes on reload; the lightmap style changes instantly
                 if (config.oldSmoothLighting != aoBefore) Minecraft.getInstance().reloadResourcePacks();
             });
         ConfigEntryBuilder entries = builder.entryBuilder();
 
         for (String group : GROUPS) {
-            ConfigCategory category = null; // se crea solo si la pestana tiene opciones
+            ConfigCategory category = null; // only created if the tab has options
             for (Field field : VanillaFlavorsConfig.class.getDeclaredFields()) {
                 if (field.getType() != boolean.class || Modifier.isStatic(field.getModifiers())) continue;
                 VanillaFlavorsConfig.Group tag = field.getAnnotation(VanillaFlavorsConfig.Group.class);

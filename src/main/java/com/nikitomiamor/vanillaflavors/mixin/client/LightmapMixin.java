@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-/** Elige el lightmap en cada actualizacion (cada tick): grises del pack o color del juego. */
+/** Picks the lightmap on every update (every tick): the pack's grayscale or the game's colorized. */
 @Mixin(Lightmap.class)
 public abstract class LightmapMixin {
     @Redirect(method = "render", at = @At(value = "FIELD", opcode = Opcodes.GETSTATIC,
