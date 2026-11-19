@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "classic_fixes",
+  "id": "vanilla_flavors",
   "version": "${version}",
-  "name": "Classic Fixes",
-  "description": "Restaura cosas que rompio la 1.3.1 (12w18a) y Mojang nunca arreglo: el ghast que se hincha antes de disparar, vagonetas que empujan, teleports instantaneos, bloques del modo creativo, la manzana de Notch, particulas de golems, el marcador del mapa, la inclinacion de dano aleatoria y los textos de carga de dimension. Cada arreglo se puede activar o desactivar desde Mod Menu.",
+  "name": "Vanilla Flavors",
+  "description": "Sabores clasicos de Minecraft para 26.3: lo que rompio la 1.3.1 (12w18a) y Mojang nunca arreglo (ghast que se hincha, vagonetas que empujan, teleports instantaneos, manzana de Notch, marcador del mapa...), la niebla de la beta y la iluminacion de BTA. Cada uno se puede activar o desactivar desde Mod Menu.",
   "authors": [
     "Nikitomiamor"
   ],
   "license": "All-Rights-Reserved",
   "environment": "*",
   "mixins": [
-    "classic_fixes.mixins.json"
+    "vanilla_flavors.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.20.0",
@@ -18,7 +18,7 @@
   },
   "entrypoints": {
     "modmenu": [
-      "com.nikitomiamor.classicfixes.client.ModMenuIntegration"
+      "com.nikitomiamor.vanillaflavors.client.ModMenuIntegration"
     ]
   },
   "suggests": {

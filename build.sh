@@ -27,6 +27,6 @@ find src/main/java -name '*.java' > build/sources.txt
 cp -r src/main/resources/. build/res/
 sed -i "s/\${version}/$VERSION/" build/res/fabric.mod.json
 
-JAR="build/libs/classic-fixes-$VERSION.jar"
+JAR="build/libs/vanilla-flavors-$VERSION.jar"
 "$JDK/bin/jar" --create --file "$JAR" -C build/classes . -C build/res .
 echo "OK -> $JAR"

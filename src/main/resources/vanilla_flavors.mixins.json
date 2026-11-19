@@ -1,0 +1,45 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.nikitomiamor.vanillaflavors.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractMinecartMixin",
+    "BlockStateBaseMixin",
+    "CarvedPumpkinBlockMixin",
+    "EntityMixin",
+    "GhastMixin",
+    "GhastShootFireballGoalMixin",
+    "LivingEntityMixin",
+    "MapHoldingPlayerMixin",
+    "PlayerAccessor",
+    "PlayerListMixin",
+    "PlayerMixin",
+    "ServerPlayerMixin",
+    "SwingStateAccessor"
+  ],
+  "client": [
+    "client.AbstractMinecartClientMixin",
+    "client.AtmosphericFogEnvironmentMixin",
+    "client.AvatarRendererMixin",
+    "client.ClientLevelDataAccessor",
+    "client.ClientLevelMixin",
+    "client.ClientPacketListenerMixin",
+    "client.FirstPersonHandsAndItemsMixin",
+    "client.FogRendererMixin",
+    "client.GameRendererMixin",
+    "client.GhastRendererMixin",
+    "client.GhastRenderStateMixin",
+    "client.HumanoidModelMixin",
+    "client.LevelLoadingScreenMixin",
+    "client.LightmapMixin",
+    "client.LivingEntityRendererMixin",
+    "client.MinecraftMixin",
+    "client.OptionsMixin",
+    "client.RenderPipelinesMixin",
+    "client.ShaderManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
