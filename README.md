@@ -38,3 +38,6 @@ Get the `.jar` from [Releases](../../releases). Requires Fabric Loader 0.20+.
 ./build.sh
 ```
 Compiles with `javac` against the 26.3 game jar and the libraries installed by the Modrinth App (see the variables at the top of `build.sh`). The jar ends up in `build/libs/`.
+
+## License
+[LGPL-3.0](COPYING.LESSER) (it builds on the [GPL-3.0](COPYING)).

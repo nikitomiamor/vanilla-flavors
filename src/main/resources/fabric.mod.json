@@ -7,7 +7,7 @@
   "authors": [
     "Nikitomiamor"
   ],
-  "license": "All-Rights-Reserved",
+  "license": "LGPL-3.0-only",
   "environment": "*",
   "mixins": [
     "vanilla_flavors.mixins.json"
