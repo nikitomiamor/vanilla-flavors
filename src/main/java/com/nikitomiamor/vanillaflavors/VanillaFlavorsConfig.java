@@ -53,6 +53,8 @@ public final class VanillaFlavorsConfig {
     public boolean fallTilt = true;
     @Group("graphics")
     public boolean voidParticles = true;
+    /** Highest Y where void particles appear (-58 is the original 1.7 height). */
+    public int voidParticlesMaxY = 0;
     @Group("graphics")
     public boolean betaLighting = true;
     @Group("graphics")
@@ -63,6 +65,22 @@ public final class VanillaFlavorsConfig {
     public boolean noArmSway = true;
     @Group("graphics")
     public boolean betaFog = true;
+    /** Daytime sky color; shown first in the Sky tab. */
+    public ClassicSky.ColorStyle skyColorStyle = ClassicSky.ColorStyle.BIOME;
+    @Group("sky")
+    public boolean skyClouds = true;
+    @Group("sky")
+    public boolean sunAndMoon = true;
+    @Group("sky")
+    public boolean flatSkyModel = false;
+    @Group("sky")
+    public boolean sunriseGlow = true;
+    @Group("sky")
+    public boolean sunsetIgnoresWeather = true;
+    @Group("sky")
+    public boolean deepBlueLowerSky = true;
+    @Group("sky")
+    public boolean lowerSkyHidesCelestials = true;
 
     /** Config menu tab (vanilla_flavors.config.group.<name>). */
     @Retention(RetentionPolicy.RUNTIME)
@@ -85,6 +103,7 @@ public final class VanillaFlavorsConfig {
             }
         }
         if (config == null) config = new VanillaFlavorsConfig();
+        if (config.skyColorStyle == null) config.skyColorStyle = ClassicSky.ColorStyle.BIOME;
         instance = config;
         save(); // writes any missing new fields to the file
         return config;

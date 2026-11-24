@@ -7,10 +7,11 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.FogRenderer;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
@@ -26,14 +27,29 @@ public abstract class FogRendererMixin {
     private void vanillaFlavors$resetFlag(Camera camera, int renderDistance, DeltaTracker deltaTracker, float darkenAmount,
                                         ClientLevel level, CallbackInfoReturnable<FogData> cir) {
         BetaFog.atmospheric = false;
+        BetaFog.ceiling = level.dimensionType().hasCeiling();
     }
 
-    @Inject(method = "setupFog", at = @At("RETURN"))
-    private void vanillaFlavors$betaFog(Camera camera, int renderDistance, DeltaTracker deltaTracker, float darkenAmount,
-                                      ClientLevel level, CallbackInfoReturnable<FogData> cir) {
-        if (!BetaFog.atmospheric || !VanillaFlavorsConfig.get().betaFog) return;
-        FogData fog = cir.getReturnValue();
-        float end = fog.renderDistanceEnd;
-        fog.renderDistanceStart = level.dimensionType().hasCeiling() ? 0.0F : end * 0.25F;
+    /**
+     * Runs on the last write of setupFog, so Sodium (which copies the values when the method returns) always sees it.
+     * Modern clear-weather air also has an environmental haze that reaches far past the render distance;
+     * b1.7.3 had none, so it is dropped. Rain and other short environmental fog stay.
+     */
+    @Redirect(method = "setupFog", at = @At(value = "FIELD", opcode = Opcodes.PUTFIELD,
+        target = "Lnet/minecraft/client/renderer/fog/FogData;renderDistanceEnd:F"))
+    private void vanillaFlavors$betaFog(FogData fog, float end) {
+        fog.renderDistanceEnd = end;
+        if (!BetaFog.atmospheric) return;
+        VanillaFlavorsConfig config = VanillaFlavorsConfig.get();
+        if (!BetaFog.ceiling) {
+            // no fade toward the horizon: one flat color, like the sky before Infdev 20100618
+            if (config.flatSkyModel) fog.skyEnd = Float.MAX_VALUE;
+        }
+        if (!config.betaFog) return;
+        fog.renderDistanceStart = BetaFog.ceiling ? 0.0F : end * 0.25F;
+        if (fog.environmentalEnd > end) {
+            fog.environmentalStart = Float.MAX_VALUE;
+            fog.environmentalEnd = Float.MAX_VALUE;
+        }
     }
 }

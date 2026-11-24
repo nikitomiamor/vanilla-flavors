@@ -28,16 +28,20 @@
     "client.FirstPersonHandsAndItemsMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",
-    "client.GhastRendererMixin",
     "client.GhastRenderStateMixin",
+    "client.GhastRendererMixin",
     "client.HumanoidModelMixin",
     "client.LevelLoadingScreenMixin",
     "client.LightmapMixin",
     "client.LivingEntityRendererMixin",
     "client.MinecraftMixin",
+    "client.OptionsCloudsMixin",
     "client.OptionsMixin",
     "client.RenderPipelinesMixin",
-    "client.ShaderManagerMixin"
+    "client.ShaderManagerMixin",
+    "client.CloudRendererMixin",
+    "client.SkyRendererMixin",
+    "client.WeatherAttributesMixin"
   ],
   "injectors": {
     "defaultRequire": 1

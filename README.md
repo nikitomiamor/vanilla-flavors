@@ -8,9 +8,14 @@ A Fabric mod for Minecraft 26.3 that brings back classic flavors of vanilla: thi
 - Beta distance fog (b1.7.3)
 - Lightmap style: Beta grayscale or modern colorized, switchable live with F7 (as in Better Than Adventure)
 - Beta smooth lighting
-- Void particles near the bottom of the world (1.7)
+- Void particles near the bottom of the world (1.7), with a configurable height
 - Dimension loading titles ("Entering the Nether", "Respawning"...)
 - Golem build particles
+
+**Sky**
+- Version presets that follow the sky's history, from Cave Game to 26.4; changing any option switches to Custom
+- Sky color: by biome, Classic (#99CCFF), early Classic (#7FCCFF) or the pure blue of early Infdev with bright white clouds
+- Toggles for clouds, sun and moon, flat sky model, sunrise and sunset glow, sunsets ignoring weather, deep blue lower sky and the lower sky hiding the sun and moon
 
 **Animations**
 - Beta arm swing, no arm sway
